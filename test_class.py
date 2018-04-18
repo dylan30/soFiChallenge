@@ -19,14 +19,29 @@
 # both positive and negative check, use assert
 
 
-
+import importlib
 import copy
 import requests
 import json
-from soFiChallenge import helper
-#from soFiChallenge import test_cases
 
 __author__ = "Dylan Dai"
+
+
+# create helper class, where contains static method for easy access
+# only 1 method now, but can put in whatever i want in the future
+
+class Helper:
+
+    @staticmethod
+    def get_apiKey():
+        api_key = "b8494f0c03ef1ba54406cc4ce85f0edd"
+        return api_key
+
+
+
+#importlib.import_module(helper)
+#from soFiChallenge import test_cases
+
 
 test_cases = [
     {"type": "pos", "id": '15'},
@@ -47,16 +62,17 @@ test_cases = [
     {"type": "neg", "id": "[abcd]/123"},
     {"type": "neg", "id": "ABCD"},
     {"type": "neg", "id": "select * from users;"},
-    {"type": "neg", "id": "abcd;123"},
+    {"type": "neg", "id": "abcd;123"}
 
 ]
 
 print(len(test_cases))
 
 
+
 def get_movie_by_id(movie_id):
-    my_helper = helper.Helper
-    api_key = my_helper.get_apiKey()
+    #my_helper = helper.Helper
+    api_key = Helper.get_apiKey()
 
     base_url = "https://api.themoviedb.org/3"
     url = base_url + "/movie/" + movie_id + "?api_key=" + api_key + "&language=en-US"
