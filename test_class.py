@@ -91,6 +91,7 @@ for i in range(len(new_list)):
     movie_id = new_list[i]
     response = get_movie_by_id(movie_id)
     response_dict = (response.json())
+    print(response_dict)
     print(response)
 
     if test_cases[i]['type'] == 'pos':
